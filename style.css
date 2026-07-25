@@ -47,7 +47,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:300;letter-spacing:-.02em}
   position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.035;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
-.cursor,.cursor-dot{position:fixed;top:0;left:0;z-index:9999;pointer-events:none;border-radius:50%;mix-blend-mode:difference}
+/*.cursor,.cursor-dot{position:fixed;top:0;left:0;z-index:9999;pointer-events:none;border-radius:50%;mix-blend-mode:difference}
 .cursor{width:34px;height:34px;border:1px solid #fff;transform:translate(-50%,-50%);transition:width .3s var(--ease),height .3s var(--ease),background .3s}
 .cursor-dot{width:5px;height:5px;background:#fff;transform:translate(-50%,-50%)}
 .cursor.is-active{width:64px;height:64px;background:rgba(255,255,255,.15)}
