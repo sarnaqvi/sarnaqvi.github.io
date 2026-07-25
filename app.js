@@ -282,6 +282,3 @@
     if (typeof ScrollTrigger !== "undefined") ScrollTrigger.refresh();
   });
 })();
-tl.fromTo(".hero .overline", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: .8, ease: "power3.out" })
-    .fromTo(".line__inner", { yPercent: 110 }, { yPercent: 0, duration: 1.4, ease: "power4.out", stagger: .12 }, "-=.4")
-    .fromTo(".hero__foot", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: "power3.out" }, "-=.8");
