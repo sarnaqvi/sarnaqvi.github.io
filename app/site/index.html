@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sarah Naqvi — Musician, Composer &amp; Researcher</title>
+  <meta name="description" content="Portfolio of Sarah Naqvi — musician, composer and researcher. Music, science writing and photography." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- grain / noise overlay -->
+  <div class="noise" aria-hidden="true"></div>
+
+  <!-- page-load transition curtain -->
+  <div class="curtain" id="curtain" aria-hidden="true">
+    <span class="curtain__word">Sarah Naqvi</span>
+  </div>
+
+  <!-- custom cursor -->
+  <div class="cursor" id="cursor" aria-hidden="true"></div>
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
+  <!-- scroll progress -->
+  <div class="progress" id="progress" aria-hidden="true"></div>
+
+  <!-- HEADER -->
+  <header class="nav" id="nav">
+    <a href="#home" class="nav__logo" data-testid="nav-logo">
+      <span>Sarah</span> <em>Naqvi</em>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#bio" data-testid="nav-link-bio">Bio</a>
+      <a href="#music" data-testid="nav-link-music">Music</a>
+      <a href="#science" data-testid="nav-link-science">Science</a>
+      <a href="#contact" class="nav__cta" data-testid="nav-link-contact">Contact</a>
+    </nav>
+    <button class="nav__burger" id="burger" aria-label="Open menu" data-testid="nav-burger">
+      <span></span><span></span>
+    </button>
+  </header>
+
+  <!-- mobile menu -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <a href="#bio" data-testid="mobile-link-bio">Bio</a>
+    <a href="#music" data-testid="mobile-link-music">Music</a>
+    <a href="#science" data-testid="mobile-link-science">Science</a>
+    <a href="#contact" data-testid="mobile-link-contact">Contact</a>
+  </div>
+
+  <main id="smooth-content">
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="hero__inner container">
+		  <div class="hero__left">
+		            <p class="overline reveal-fade" data-testid="hero-overline">Portfolio</p>
+        <h1 class="hero__title">
+		  <span class="line"><span class="line__inner">Sarah</span></span>
+		  <span class="line"><span class="line__inner"><em>Naqvi</em></span></span>
+        </h1>
+        <p class="hero__roles reveal-fade" data-testid="hero-roles">Musician &nbsp;·&nbsp; Composer &nbsp;·&nbsp; Researcher</p>
+		
+        <div class="hero__foot reveal-fade">
+          <a href="#bio" class="btn-magnetic" data-testid="hero-explore-btn">
+            <span>Enter the archive</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1v14M8 15l5-5M8 15l-5-5" stroke="currentColor" stroke-width="1.2"/></svg>
+          </a>
+        </div>
+    </div>
+           <figure class="hero__media" data-testid="hero-photo">
+             <div class="hero__media-frame">
+                  <img src="assets/img/sarah-hero.jpg" alt="Sarah Naqvi holding a flute in a garden" data-parallax="0.08" />
+			   
+			   
+             </div>
+           </figure>
+      </div>
+      <div class="hero__scroll" aria-hidden="true"><span>Scroll</span></div>
+    </section>
+
+    <!-- BIO -->
+    <section class="bio" id="bio">
+      <div class="container bio__grid">
+        <div class="bio__text">
+          <p class="overline reveal" data-testid="bio-overline">01 — Bio</p>
+          <h2 class="reveal"><span class="dropcap">S</span>arah Naqvi is a musician, composer and researcher working at the seam where <em>acoustics</em> meets emotion.</h2>
+          <p class="body reveal">Trained in both physics and composition, Sarah builds instruments that translate scientific datasets into music — glacial melt into slow strings, neural activity into rhythm. The work has been performed in planetariums, printed in journals, and pressed to vinyl.</p>
+
+          <p class="body reveal">Based between a laboratory and a listening room, the practice refuses the line between the analytical and the felt. Every piece begins as a question.</p>
+          <ul class="bio__facts reveal">
+            <li><span>Focus</span> Data sonification &amp; psychoacoustics</li>
+            <li><span>Based in</span> Reykjavík / Berlin</li>
+            <li><span>Since</span> 2014</li>
+          </ul>
+        </div>
+        <figure class="bio__figure reveal-img">
+          <div class="bio__frame">
+            <img src="https://images.pexels.com/photos/16458598/pexels-photo-16458598.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Contemplative portrait of Sarah Naqvi in low light" data-parallax="0.08" />
+			
+			
+          </div>
+          <figcaption>Sarah Naqvi — studio portrait, 2026</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track" id="marquee">
+        <span>Sound — Science — Stillness — Signal —&nbsp;</span>
+        <span>Sound — Science — Stillness — Signal —&nbsp;</span>
+        <span>Sound — Science — Stillness — Signal —&nbsp;</span>
+      </div>
+    </div>
+
+    <!-- MUSIC -->
+    <section class="music" id="music">
+      <div class="music__bloom" id="musicBloom" aria-hidden="true"></div>
+      <div class="container">
+        <div class="music__head">
+          <p class="overline reveal" data-testid="music-overline">02 — Music</p>
+          <h2 class="reveal">Selected <em>recordings</em></h2>
+          <p class="body music__intro reveal">A rotating selection from the archive. Press play — these are working demos, replace them with your own masters.</p>
+        </div>
+
+        <div class="player" data-testid="audio-player">
+          <ul class="tracklist" id="tracklist">
+            <li class="track" data-src="assets/audio/track1.mp3" data-title="Glacier, Reversed" data-meta="Data sonification · 2025" data-testid="track-0">
+              <span class="track__index">01</span>
+              <button class="track__play" aria-label="Play Glacier, Reversed" data-testid="track-play-0">
+                <svg class="ic-play" width="14" height="14" viewBox="0 0 14 14"><path d="M2 1l11 6L2 13V1z" fill="currentColor"/></svg>
+                <svg class="ic-pause" width="14" height="14" viewBox="0 0 14 14"><rect x="2" y="1" width="3.5" height="12" fill="currentColor"/><rect x="8.5" y="1" width="3.5" height="12" fill="currentColor"/></svg>
+              </button>
+              <span class="track__title">Glacier, Reversed</span>
+              <span class="track__meta">Data sonification · 2025</span>
+              <span class="track__dur">—</span>
+            </li>
+            <li class="track" data-src="assets/audio/track2.mp3" data-title="Neural Drift" data-meta="Generative · 2024" data-testid="track-1">
+              <span class="track__index">02</span>
+              <button class="track__play" aria-label="Play Neural Drift" data-testid="track-play-1">
+                <svg class="ic-play" width="14" height="14" viewBox="0 0 14 14"><path d="M2 1l11 6L2 13V1z" fill="currentColor"/></svg>
+                <svg class="ic-pause" width="14" height="14" viewBox="0 0 14 14"><rect x="2" y="1" width="3.5" height="12" fill="currentColor"/><rect x="8.5" y="1" width="3.5" height="12" fill="currentColor"/></svg>
+              </button>
+              <span class="track__title">Neural Drift</span>
+              <span class="track__meta">Generative · 2024</span>
+              <span class="track__dur">—</span>
+            </li>
+            <li class="track" data-src="assets/audio/track3.mp3" data-title="The Physics of Listening" data-meta="Live · Planetarium · 2023" data-testid="track-2">
+              <span class="track__index">03</span>
+              <button class="track__play" aria-label="Play The Physics of Listening" data-testid="track-play-2">
+                <svg class="ic-play" width="14" height="14" viewBox="0 0 14 14"><path d="M2 1l11 6L2 13V1z" fill="currentColor"/></svg>
+                <svg class="ic-pause" width="14" height="14" viewBox="0 0 14 14"><rect x="2" y="1" width="3.5" height="12" fill="currentColor"/><rect x="8.5" y="1" width="3.5" height="12" fill="currentColor"/></svg>
+              </button>
+              <span class="track__title">The Physics of Listening</span>
+              <span class="track__meta">Live · Planetarium · 2023</span>
+              <span class="track__dur">—</span>
+            </li>
+          </ul>
+
+          <div class="nowplaying" id="nowplaying" data-testid="now-playing">
+            <div class="nowplaying__meta">
+              <span class="nowplaying__label">Now playing</span>
+              <span class="nowplaying__title" id="npTitle">Select a track</span>
+            </div>
+            <div class="nowplaying__bar" id="seek" data-testid="seek-bar">
+              <div class="nowplaying__fill" id="seekFill"></div>
+            </div>
+            <span class="nowplaying__time" id="npTime">0:00 / 0:00</span>
+          </div>
+          <audio id="audio" preload="metadata"></audio>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCIENCE / BLOG -->
+    <section class="science" id="science">
+      <div class="container">
+        <div class="science__head">
+          <p class="overline reveal" data-testid="science-overline">03 — Science</p>
+          <h2 class="reveal">Notes &amp; <em>manifestos</em></h2>
+        </div>
+
+        <article class="chapter reveal" data-testid="article-0">
+          <span class="chapter__num">01</span>
+          <div class="chapter__body">
+            <h3>Why a glacier should be heard, not just measured</h3>
+            <p class="body">Numbers describe a retreating ice sheet with precision and no urgency. Translate that same dataset into a falling melody and the room goes quiet. This is an argument for sonification as a tool of both science and conscience.</p>
+            <a href="#contact" class="link-underline" data-testid="article-link-0">Read the essay</a>
+          </div>
+        </article>
+
+        <article class="chapter reveal" data-testid="article-1">
+          <span class="chapter__num">02</span>
+          <div class="chapter__body">
+            <h3>Psychoacoustics: the instrument is your skull</h3>
+            <p class="body">Before a sound is music it is a pressure wave bending through bone and fluid. Understanding the mechanics of hearing changes how I compose — I write for the ear's blind spots as much as its sensitivities.</p>
+            <a href="#contact" class="link-underline" data-testid="article-link-1">Read the essay</a>
+          </div>
+        </article>
+
+        <article class="chapter reveal" data-testid="article-2">
+          <span class="chapter__num">03</span>
+          <div class="chapter__body">
+            <h3>On building instruments that don't exist yet</h3>
+            <p class="body">Every dataset demands a new instrument. A field note on prototyping software synthesizers that map neural activity to rhythm, and why constraints from physics make better music than freedom does.</p>
+            <a href="#contact" class="link-underline" data-testid="article-link-2">Read the essay</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+      <div class="container">
+        <p class="overline reveal" data-testid="contact-overline">04 — Contact</p>
+        <h2 class="contact__title reveal">Let's <em>talk</em>.</h2>
+        <p class="body contact__lede reveal">Commissions, collaborations, performances, or a question about the work — the box is open.</p>
+
+        <!-- Replace YOUR_ENDPOINT with your Formspree form ID (see README) -->
+        <form class="form reveal" action="https://formspree.io/f/YOUR_ENDPOINT" method="POST" id="contactForm" data-testid="contact-form">
+          <div class="form__row">
+            <div class="field">
+              <label for="name">Your name</label>
+              <input type="text" id="name" name="name" required data-testid="contact-name" />
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required data-testid="contact-email" />
+            </div>
+          </div>
+          <div class="field">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" data-testid="contact-subject" />
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="4" required data-testid="contact-message"></textarea>
+          </div>
+          <button type="submit" class="btn-submit" data-testid="contact-submit">
+            <span>Send message</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 8h14M15 8l-5-5M15 8l-5 5" stroke="currentColor" stroke-width="1.2"/></svg>
+          </button>
+          <p class="form__status" id="formStatus" data-testid="form-status" role="status"></p>
+        </form>
+      </div>
+
+      <footer class="footer">
+        <div class="container footer__inner">
+          <span>© <span id="year"></span> Sarah Naqvi</span>
+          <div class="footer__social">
+            <a href="#" data-testid="social-instagram">Instagram</a>
+            <a href="#" data-testid="social-bandcamp">Bandcamp</a>
+            <a href="#" data-testid="social-scholar">Scholar</a>
+          </div>
+          <a href="#home" class="footer__top" data-testid="back-to-top">Back to top ↑</a>
+        </div>
+      </footer>
+    </section>
+  </main>
+
+  <!-- Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

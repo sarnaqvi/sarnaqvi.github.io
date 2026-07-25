@@ -1,0 +1,144 @@
+{
+  "project_type": "portfolio",
+  "theme": "light",
+  "emotional_tone": "Editorial, sophisticated, intellectual, organic yet highly structured",
+  "tech_stack": {
+    "html": "Vanilla HTML5",
+    "css": "Tailwind CSS via CDN or build step (no React/Shadcn)",
+    "js": "Vanilla JavaScript (ES6+)",
+    "animation": "GSAP (Core, ScrollTrigger)",
+    "scrolling": "Lenis for smooth momentum scrolling"
+  },
+  "typography": {
+    "strategy": "The 'Old Money Tech' variant - classic serif for dramatic impact, paired with an ultra-clean geometric sans for structure.",
+    "heading_font": "Cormorant Garamond (Google Fonts)",
+    "body_font": "Outfit (Google Fonts)",
+    "hierarchy": {
+      "h1": "text-5xl md:text-7xl lg:text-[8vw] font-light tracking-tighter leading-[0.9]",
+      "h2": "text-4xl md:text-6xl font-light tracking-tight leading-none",
+      "h3": "text-2xl md:text-3xl font-medium tracking-tight",
+      "body": "text-base md:text-lg font-light leading-relaxed",
+      "overline": "text-xs uppercase tracking-[0.2em] font-medium text-gray-500"
+    },
+    "rules": [
+      "Headings must use tight letter spacing.",
+      "Never center-align body text. Keep left-aligned for an editorial flow.",
+      "Use italics in serif headings to highlight specific words (e.g., 'The <span class=\"italic\">Science</span> of Art')."
+    ]
+  },
+  "colors": {
+    "background": {
+      "primary": "#FAFAFA",
+      "secondary": "#F0F0F0",
+      "dark_surface": "#0A0A0A"
+    },
+    "text": {
+      "primary": "#0A0A0A",
+      "secondary": "#555555",
+      "inverse": "#FAFAFA"
+    },
+    "accents": {
+      "forest_green": "#2E5A44",
+      "lavender": "#C3B1E1"
+    },
+    "rules": [
+      "White/Black provide the stark structural contrast.",
+      "Forest Green is used for interaction states, active lines, and the Science section.",
+      "Lavender is used for soft backgrounds, Music section highlights, and hover blooms.",
+      "No generic full-screen gradients. Use solid colors with high contrast."
+    ]
+  },
+  "layouts": {
+    "container": "max-w-[1400px] mx-auto px-6 md:px-12",
+    "spacing_system": "Generous. Use massive padding between sections (py-32 md:py-48) to create breathing room.",
+    "grid": "Use 12-column CSS Grid. Do not center everything. Offset content. e.g., text spans col 2-6, image spans col 8-12."
+  },
+  "visual_enhancers": {
+    "borders": "1px solid border-black/10 for dividing sections or creating 'bento' structural frames.",
+    "textures": "Subtle SVG noise overlay fixed to the screen (opacity 0.03) to kill the 'digital flatness'.",
+    "images": "Use sharp, un-rounded corners (0px radius) for photos to maintain the editorial print-design aesthetic.",
+    "header": "Solid or heavy-blur glassmorphism background (backdrop-blur-xl bg-[#FAFAFA]/80) with a 1px bottom border. DO NOT USE FULLY TRANSPARENT HEADERS if scrolling over content."
+  },
+  "sections_blueprint": [
+    {
+      "name": "Header & Nav",
+      "layout": "Fixed top, flex justify-between, minimal. Logo left, Nav links right.",
+      "features": "Must have a solid or blurred background so links are readable over scrolling content."
+    },
+    {
+      "name": "Hero (Kinetic)",
+      "layout": "Massive typographic statement. Split into 2 or 3 lines.",
+      "features": "Signature GSAP on-load text reveal using clip-path or y-translation with overflow-hidden wrappers. Subtle 3D mouse parallax on a background element."
+    },
+    {
+      "name": "Bio (About)",
+      "layout": "Asymmetrical. Left: text block with large drop-cap. Right: Deliberately treated photography (spotlight/clipped frame).",
+      "features": "Scroll-triggered reveal."
+    },
+    {
+      "name": "Marquee Divider",
+      "layout": "Full width, overflow hidden, massive outlined text (text-8xl text-transparent border-black).",
+      "features": "Slow, constant movement using GSAP."
+    },
+    {
+      "name": "Music (Audio Player)",
+      "layout": "Minimalist tracklist layout. High contrast (maybe dark surface #0A0A0A with Lavender accents).",
+      "features": "Custom HTML/JS audio player. Use minimalist play/pause icons (SVG). Hovering a track reveals a subtle lavender bloom or image."
+    },
+    {
+      "name": "Science (Blog/Manifesto)",
+      "layout": "Numbered manifesto chapters. Massive numbers (01, 02) paired with short articles.",
+      "features": "Use Forest Green for the numbers or hover states. Staggered fade-in on scroll."
+    },
+    {
+      "name": "Contact (Footer)",
+      "layout": "Massive 'Let's Talk' typography (text-[10vw]). Simple Formspree HTML form.",
+      "features": "Form inputs must be minimalist (bottom borders only, no background). Form submit button in Forest Green."
+    }
+  ],
+  "motion": {
+    "scrolling": "Initialize Lenis globally for buttery smooth momentum.",
+    "hero_reveal": "gsap.from() with y: '100%', ease: 'power4.out', stagger: 0.1, duration: 1.5, wrapped in overflow-hidden spans.",
+    "scroll_reveals": "Use GSAP ScrollTrigger. Elements fade in and translate up (y: 40, opacity: 0) as they enter viewport.",
+    "micro_interactions": "Custom cursor (optional), magnetic buttons using GSAP, smooth image scaling on hover (scale: 1.05 within hidden overflow container).",
+    "page_transitions": "A full-screen black overlay that slides up on DOMContentLoaded before revealing the hero."
+  },
+  "image_urls": {
+    "bio_portrait": {
+      "url": "https://images.pexels.com/photos/28781653/pexels-photo-28781653.jpeg",
+      "description": "Contemplative black and white portrait of a woman, for the Bio section."
+    },
+    "science_background": {
+      "url": "https://images.pexels.com/photos/19502960/pexels-photo-19502960.jpeg",
+      "description": "Moody dark green foliage to use as a parallax accent or image mask in the Science section."
+    },
+    "music_accent": {
+      "url": "https://images.pexels.com/photos/14549214/pexels-photo-14549214.jpeg",
+      "description": "Soft lavender abstract floral background to use alongside the Music player or hover states."
+    }
+  },
+  "accessibility": {
+    "contrast": "Ensure all text over images or colored backgrounds passes WCAG AA. Use text-shadow or overlays if needed.",
+    "testing": "All interactive elements (buttons, inputs, links, play toggles) MUST include a 'data-testid' attribute (e.g., data-testid='contact-submit-button').",
+    "motion": "Respect prefers-reduced-motion media query by disabling GSAP animations if true."
+  },
+  "instructions_to_main_agent": [
+    "This is a STATIC site. DO NOT scaffold a React/Next.js app. Create an index.html, style.css, and app.js.",
+    "Import Tailwind via CDN script for styling.",
+    "Import GSAP, ScrollTrigger, and Lenis via CDN.",
+    "Load fonts from Google Fonts: Cormorant Garamond and Outfit.",
+    "Follow the exact color hex codes provided.",
+    "Use proper semantic HTML5 tags (<article>, <section>, <nav>).",
+    "Do NOT use placeholder images from dummyimage.com; use the exact Pexels URLs provided in 'image_urls'.",
+    "Ensure the Formspree form is fully functional standard HTML form (<form action='https://formspree.io/f/YOUR_ENDPOINT' method='POST'>)."
+  ],
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "Do not converge toward generic 'AI slop' aesthetics. Use extreme asymmetrical padding, massive typography contrasts, and intentional negative space.",
+    "Never apply 'transition: all' globally.",
+    "Never center-align the main app container.",
+    "Use modern pill-shaped or sharp editorial buttons. Avoid generic rounded-md blue bootstrap-style buttons.",
+    "No AI assistant emoji characters (🤖🧠💡) anywhere.",
+    "All interactions must have a hover state.",
+    "Implement real scroll physics via Lenis."
+  ]
+}
