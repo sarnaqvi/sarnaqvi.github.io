@@ -183,12 +183,42 @@ h1,h2,h3{font-family:var(--serif);font-weight:300;letter-spacing:-.02em}
 .bio__figure figcaption{margin-top:14px;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
 
 /* ============ MARQUEE ============ */
-.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;padding:26px 0}
-.marquee__track{display:flex;white-space:nowrap;will-change:transform}
-.marquee__track span{
-  font-family:var(--serif);font-size:clamp(3rem,9vw,7rem);line-height:1;
-  color:transparent;-webkit-text-stroke:1px var(--ink);text-stroke:1px var(--ink);
-  padding-right:.2em;font-style:italic;
+/* Container settings */
+.marquee {
+  overflow: hidden;
+  width: 100%;
+}
+
+/* Track flex setup */
+.marquee__track {
+  display: flex;
+  align-items: center;
+  gap: 30px; /* Space between each image */
+  width: max-content;
+  animation: marquee-scroll 20s linear infinite;
+}
+
+/* Ensure images maintain aspect ratio */
+.marquee__track img {
+  height: 80px; /* Adjust height to fit your design */
+  width: auto;   /* Prevents images from stretching */
+  object-fit: cover;
+  border-radius: 6px; /* Optional: adds subtle rounded corners */
+}
+
+/* Pause on hover (Optional, but great for usability) */
+.marquee:hover .marquee__track {
+  animation-play-state: paused;
+}
+
+/* Infinite loop animation */
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); /* Moves exactly halfway through the track */
+  }
 }
 
 /* ============ MUSIC ============ */
