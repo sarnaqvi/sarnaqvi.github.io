@@ -1,8 +1,7 @@
 /* ============ TOKENS & FONTS ============ */
 
 /* FIXED: Replaced broken domain with working font files link */
-@import url('https://googleapis.com');
-
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Unica+One&display=swap');
 :root {
   --bg: #FAFAFA;
   --bg2: #F0F0F0;
