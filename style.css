@@ -197,13 +197,13 @@ h1,h2,h3{font-family:var(--serif);font-weight:300;letter-spacing:-.02em}
   gap: 32px; /* Space between each image card */
   width: max-content;
   will-change: transform;
-  animation: marquee-scroll 35s linear infinite;
+  animation: marquee-scroll 40s linear infinite;
 }
 
 /* Individual card styling */
 .marquee__item {
-  width: 380px;         /* Controls card width */
-  height: 520px;        /* Controls card height */
+  width: 300px;         /* Controls card width */
+  height: 420px;        /* Controls card height */
   flex-shrink: 0;       /* Prevents images from shrinking */
   border-radius: 4px;   /* Subtle rounded corners */
   overflow: hidden;
