@@ -1,233 +1,364 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sarah Naqvi</title>
-  <meta name="description" content="Portfolio of Sarah Naqvi — musician, composer, and researcher. Music, science writing, and photography." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sarah Naqvi | Portfolio</title>
+  <style>
+    /* Global Reset & Dark Theme Styling */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #0d0d0d;
+      color: #e0e0e0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    /* Header / Navigation */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: 40px;
+    }
+
+    .site-title {
+      font-size: 1.8rem;
+      font-weight: 300;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .site-title span {
+      font-style: italic;
+      font-weight: 400;
+      text-transform: none;
+    }
+
+    nav a {
+      color: #a0a0a0;
+      text-decoration: none;
+      margin-left: 24px;
+      font-size: 0.95rem;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: #ffffff;
+    }
+
+    /* Section Headers */
+    section {
+      margin-bottom: 60px;
+    }
+
+    h2.section-title {
+      font-size: 1.4rem;
+      font-weight: 300;
+      letter-spacing: 1px;
+      margin-bottom: 24px;
+      color: #ffffff;
+    }
+
+    /* Bio Section & Distinct Link Styling */
+    .bio-text {
+      font-size: 1.05rem;
+      color: #cccccc;
+      max-width: 800px;
+    }
+
+    /* Distinct Link Styling for Berklee Psychology of Music Research Lab */
+    .inline-link {
+      color: #64b5f6; /* Bright visible accent link color */
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      font-weight: 500;
+      transition: color 0.2s ease, text-decoration-color 0.2s ease;
+    }
+
+    .inline-link:hover {
+      color: #90caf9;
+      text-decoration-color: #ffffff;
+    }
+
+    /* Music / Project List Container */
+    .track-list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .track-item {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 24px;
+    }
+
+    /* Header row for each track item */
+    .track-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      width: 100%;
+    }
+
+    .track-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      min-width: 260px; /* Prevents "Flute Poses" title from breaking awkwardly */
+      flex-shrink: 0;
+    }
+
+    .track-number {
+      font-size: 0.85rem;
+      color: #666666;
+      font-family: monospace;
+    }
+
+    .play-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: #ffffff;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      transition: background 0.2s ease, transform 0.1s ease;
+    }
+
+    .play-btn:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: scale(1.05);
+    }
+
+    .track-title {
+      font-size: 1.35rem;
+      font-weight: 400;
+      color: #ffffff;
+      white-space: nowrap; /* Keeps titles on a single line */
+    }
+
+    .track-description {
+      font-size: 0.9rem;
+      color: #888888;
+      text-align: right;
+      flex-grow: 1;
+      line-height: 1.5;
+    }
+
+    /* Embedded Video Player Styling */
+    .video-container {
+      margin-top: 16px;
+      width: 100%;
+      max-width: 720px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+
+    .video-container video {
+      width: 100%;
+      height: auto;
+      display: block;
+      aspect-ratio: 16 / 9;
+    }
+
+    /* Fixed Bottom Audio / Media Bar */
+    .media-player-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #141414;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 16px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(10px);
+    }
+
+    .now-playing {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .now-playing-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #666;
+    }
+
+    .now-playing-title {
+      font-size: 0.95rem;
+      color: #fff;
+    }
+
+    .playback-progress {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 50%;
+      max-width: 400px;
+    }
+
+    .progress-bar {
+      flex: 1;
+      height: 4px;
+      background: #333;
+      border-radius: 2px;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .progress-fill {
+      width: 10%;
+      height: 100%;
+      background: #bb86fc;
+      border-radius: 2px;
+    }
+
+    .time-stamp {
+      font-size: 0.8rem;
+      color: #777;
+      font-family: monospace;
+    }
+
+    /* Responsiveness for Mobile Screens */
+    @media (max-width: 768px) {
+      .track-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      .track-description {
+        text-align: left;
+      }
+
+      .playback-progress {
+        width: 35%;
+      }
+    }
+  </style>
 </head>
 <body>
-  <!-- grain / noise overlay -->
-  <div class="noise" aria-hidden="true"></div>
 
-  <!-- page-load transition curtain -->
-  <div class="curtain" id="curtain" aria-hidden="true">
-    <span class="curtain__word">SARAH NAQVI</span>
-  </div>
+  <div class="container">
+    <!-- Navigation Header -->
+    <header>
+      <div class="site-title">SARAH <span>NAQVI</span></div>
+      <nav>
+        <a href="#bio">Bio</a>
+        <a href="#music">Music</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
 
-  <!-- custom cursor -->
-  <div class="cursor" id="cursor" aria-hidden="true"></div>
-  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
-  
-  <!-- scroll progress --> 
-  <div class="progress" id="progress" aria-hidden="true"></div>
+    <!-- Bio Section -->
+    <section id="bio">
+      <h2 class="section-title">Bio</h2>
+      <p class="bio-text">
+        Sarah Naqvi is a sound artist, composer, and researcher exploring interactive performance, real-time computer vision, and digital audio processing. She works as a researcher at the 
+        <a href="https://www.berklee.edu/psychology-of-music" target="_blank" rel="noopener noreferrer" class="inline-link">Berklee Psychology of Music Research Lab</a>, 
+        investigating gestural interaction and music perception.
+      </p>
+    </section>
 
-  <!-- HEADER -->
-  <header class="nav" id="nav">
-    <a href="#home" class="nav__logo" data-testid="nav-logo">
-      <span>SARAH</span> <em>NAQVI</em>
-    </a>
-    <nav class="nav__links" aria-label="Primary">
-      <a href="#bio" data-testid="nav-link-bio">Bio</a>
-      <a href="#music" data-testid="nav-link-music">Music</a>
-      <a href="#contact" data-testid="nav-link-contact">Contact</a>
-    </nav>
-    <button class="nav__burger" id="burger" aria-label="Open menu" data-testid="nav-burger">
-      <span></span><span></span>
-    </button>
-  </header>
-
-  <!-- mobile menu -->
-  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-    <a href="#bio" data-testid="mobile-link-bio">Bio</a>
-    <a href="#music" data-testid="mobile-link-music">Music</a>
-    <a href="#contact" data-testid="mobile-link-contact">Contact</a>
-  </div>
-
-  <main id="smooth-content">
-    <!-- HERO -->
-    <section class="hero" id="home">
-      <div class="hero__inner container">
-        <div class="hero__left">
-          <p class="overline reveal-fade" data-testid="hero-overline">Portfolio</p>
-          <h1 class="hero__title">
-            <span class="line"><span class="line__inner">SARAH</span></span>
-            <span class="line"><span class="line__inner"><em>NAQVI</em></span></span>
-          </h1>
-          <p class="hero__roles reveal-fade" data-testid="hero-roles">Musician &nbsp;·&nbsp; Producer/Composer &nbsp;·&nbsp; Research Assistant</p>
+    <!-- Music / Work Section -->
+    <section id="music">
+      <h2 class="section-title">Selected Works</h2>
+      
+      <div class="track-list">
         
-          <div class="hero__foot reveal-fade">
-            <a href="#bio" class="btn-magnetic" data-testid="hero-explore-btn">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1v14M8 15l5-5M8 15l-5-5" stroke="currentColor" stroke-width="1.2"/></svg>
-            </a>
+        <!-- Track 01 -->
+        <div class="track-item">
+          <div class="track-row">
+            <div class="track-left">
+              <span class="track-number">01</span>
+              <button class="play-btn" aria-label="Play Walid">▶</button>
+              <div class="track-title">Walid</div>
+            </div>
+            <div class="track-description">
+              Stereo render of 8.1 multichannel composition
+            </div>
           </div>
         </div>
-        <figure class="hero__media" data-testid="hero-photo">
-          <div class="hero__media-frame">
-            <img src="assets/img/sarah-hero.jpg" alt="Sarah Naqvi holding a flute in a garden" data-parallax="0.08" />
-          </div>
-        </figure>
-      </div>
-    </section>
 
-    <!-- BIO -->
-    <section class="bio" id="bio">
-      <div class="container bio__grid">
-        <div class="bio__text">
-          <p class="overline reveal" data-testid="bio-overline">01 — Bio</p>
-          <p class="body reveal">Sarah Naqvi is a Chinese-Pakistani musician, producer/composer, and research assistant from Long Island, New York.</p>
-          <p class="body reveal">She is currently studying music technology, creative coding, and psychology at Berklee College of Music, and creates works that embrace the intersections of contemporary and Eastern musical traditions, language, and performance. Naqvi draws from diverse lived experiences and unique personal stories to create expressive and immersive soundscapes with experience in multichannel audio. Aside from her musical endeavors, Naqvi is an undergraduate research assistant at the <a href="https://bpmresearchlab.org/" target="_blank" rel="noopener noreferrer">Berklee Psychology of Music research lab</a> where she explores her interests in music cognition, blending her passions for music and science.</p>
-		  
-			  
-		  
+        <!-- Track 02 -->
+        <div class="track-item">
+          <div class="track-row">
+            <div class="track-left">
+              <span class="track-number">02</span>
+              <button class="play-btn" aria-label="Play Peony Pavilion: Dreaming">▶</button>
+              <div class="track-title">Peony Pavilion: Dreaming</div>
+            </div>
+            <div class="track-description">
+              Stereo render of ambisonics composition
+            </div>
+          </div>
         </div>
-        <figure class="bio__figure reveal-img">
-          <div class="bio__frame">
-            <img src="assets/img/Biopic1.jpg" alt="Sarah Naqvi">
+
+        <!-- Track 03 / Project: Flute Poses -->
+        <div class="track-item">
+          <div class="track-row">
+            <div class="track-left">
+              <span class="track-number">03</span>
+              <button class="play-btn" aria-label="Play Flute Poses">▶</button>
+              <div class="track-title">Flute Poses</div>
+            </div>
+            <div class="track-description">
+              Interactive system tracking flute performance postures using computer vision (MediaPipe), mapping gestural features through Wekinator machine learning, and controlling real-time audio DSP in Max/MSP.
+            </div>
           </div>
-        </figure>
+
+          <!-- Embedded Local Video Container -->
+          <div class="video-container">
+            <video controls playsinline preload="metadata">
+              <!-- Make sure your video file is located at assets/flute_demo.mp4 or change the path here -->
+              <source src="assets/flute_demo.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+
       </div>
     </section>
+  </div>
 
-    <!-- MARQUEE -->
-    <div class="marquee" aria-hidden="true">
-      <div class="marquee__track" id="marquee">
-        <!-- Set 1 -->
-        <div class="marquee__item"><img src="assets/img/Testphoto2.jpg" alt="Science"></div>
-        <div class="marquee__item"><img src="assets/img/Testphoto3.jpg" alt="Stillness"></div>
-        <div class="marquee__item"><img src="assets/img/Testphoto4.jpg" alt="Signal"></div>
-        <div class="marquee__item"><img src="assets/img/Testphoto5.jpg" alt="Signal"></div>
-        <div class="marquee__item"><img src="assets/img/Testphoto6.jpg" alt="Signal"></div>
-
-        <!-- Set 2 (Duplicate for seamless loop) -->
-        <div class="marquee__item"><img src="assets/img/Testphoto2.jpg" alt="Science"></div>
-        <div class="marquee__item"><img src="assets/img/Testphoto3.jpg" alt="Stillness"></div>
-        <div class="marquee__item"><img src="assets/img/Testphoto4.jpg" alt="Signal"></div>
-        <div class="marquee__item"><img src="assets/img/Testphoto5.jpg" alt="Signal"></div>
-        <div class="marquee__item"><img src="assets/img/Testphoto6.jpg" alt="Signal"></div>
-      </div>
+  <!-- Bottom Player Bar -->
+  <div class="media-player-bar">
+    <div class="now-playing">
+      <span class="now-playing-label">NOW PLAYING</span>
+      <span class="now-playing-title">FlutePoses</span>
     </div>
-
-    <!-- MUSIC -->
-    <section class="music" id="music">
-      <div class="music__bloom" id="musicBloom" aria-hidden="true"></div>
-      <div class="container">
-        <div class="music__head">
-          <p class="overline reveal" data-testid="music-overline">02 — Music</p>
-          <h2 class="reveal">Selected <em>recordings & works</em></h2>
-          <p class="body music__intro reveal">Press play</p>
-        </div>
-
-        <div class="player" data-testid="audio-player">
-          <ul class="tracklist" id="tracklist">
-            <li class="track" data-src="assets/audio/Walid.wav" data-title="Walid" data-meta="Walid" data-testid="track-0">
-              <span class="track__index">01</span>
-              <button class="track__play" aria-label="Play Walid" data-testid="track-play-0">
-                <svg class="ic-play" width="14" height="14" viewBox="0 0 14 14"><path d="M2 1l11 6L2 13V1z" fill="currentColor"/></svg>
-                <svg class="ic-pause" width="14" height="14" viewBox="0 0 14 14"><rect x="2" y="1" width="3.5" height="12" fill="currentColor"/><rect x="8.5" y="1" width="3.5" height="12" fill="currentColor"/></svg>
-              </button>
-              <span class="track__title">Walid</span>
-              <span class="track__meta">Stereo render of 8.1 multichannel composition</span>
-              <span class="track__dur">—</span>
-            </li>
-            <li class="track" data-src="assets/audio/PeonyPavilion.wav" data-title="Peony Pavilion: Dreaming" data-meta="Peony Pavilion" data-testid="track-1">
-              <span class="track__index">02</span>
-              <button class="track__play" aria-label="Play Peony Pavilion: Dreaming" data-testid="track-play-1">
-                <svg class="ic-play" width="14" height="14" viewBox="0 0 14 14"><path d="M2 1l11 6L2 13V1z" fill="currentColor"/></svg>
-                <svg class="ic-pause" width="14" height="14" viewBox="0 0 14 14"><rect x="2" y="1" width="3.5" height="12" fill="currentColor"/><rect x="8.5" y="1" width="3.5" height="12" fill="currentColor"/></svg>
-              </button>
-              <span class="track__title">Peony Pavilion: Dreaming</span>
-              <span class="track__meta">Stereo render of ambisonics composition</span>
-              <span class="track__dur">—</span>
-            </li>
-            <li class="track track--video" data-src="assets/audio/FlutePosesDemo.mp4" data-title="Flute Poses" data-meta="Flute Poses" data-testid="track-2">
-              <div class="track__header">
-                <span class="track__index">03</span>
-                <button class="track__play" aria-label="Play Flute Poses Video" data-testid="track-play-2">
-                  <svg class="ic-play" width="14" height="14" viewBox="0 0 14 14"><path d="M2 1l11 6L2 13V1z" fill="currentColor"/></svg>
-                  <svg class="ic-pause" width="14" height="14" viewBox="0 0 14 14"><rect x="2" y="1" width="3.5" height="12" fill="currentColor"/><rect x="8.5" y="1" width="3.5" height="12" fill="currentColor"/></svg>
-                </button>
-                <span class="track__title">Flute Poses</span>
-                <span class="track__meta">Demo video of Flute Poses: An interactive system that tracks flute performance postures using computer vision, maps gestural features through interactive machine learning (Wekinator), and controls real-time audio signal processing in Max/MSP.</span>
-                <span class="track__dur">—</span>
-              </div>
-              <div class="track__video-container" style="margin-top: 15px; display: none;">
-                <video id="fluteVideo" width="100%" controls style="border-radius: 8px; max-height: 480px; background: #000;">
-                  <source src="assets/audio/FlutePosesDemo.mp4" type="video/mp4">
-                  Your browser does not support video playback.
-                </video>
-              </div>
-            </li>
-          </ul>
-
-          <div class="nowplaying" id="nowplaying" data-testid="now-playing">
-            <div class="nowplaying__meta">
-              <span class="nowplaying__label">Now playing</span>
-              <span class="nowplaying__title" id="npTitle">Select a track</span>
-            </div>
-            <div class="nowplaying__bar" id="seek" data-testid="seek-bar">
-              <div class="nowplaying__fill" id="seekFill"></div>
-            </div>
-            <span class="nowplaying__time" id="npTime">0:00 / 0:00</span>
-          </div>
-          <audio id="audio" preload="metadata"></audio>
-        </div>
+    <div class="playback-progress">
+      <div class="progress-bar">
+        <div class="progress-fill"></div>
       </div>
-    </section>
+      <span class="time-stamp">0:07 / 1:28</span>
+    </div>
+  </div>
 
-    <!-- CONTACT -->
-    <section class="contact" id="contact">
-      <div class="container">
-        <p class="overline reveal" data-testid="contact-overline">03 — Contact</p>
-        <h2 class="contact__title reveal">Let's <em>talk</em>.</h2>
-
-        <form class="form reveal" action="https://formspree.io/f/xqervyge" method="POST" id="contactForm" data-testid="contact-form">
-          <div class="form__row">
-            <div class="field">
-              <label for="name">Your name</label>
-              <input type="text" id="name" name="name" required data-testid="contact-name" />
-            </div>
-            <div class="field">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" required data-testid="contact-email" />
-            </div>
-          </div>
-          <div class="field">
-            <label for="subject">Subject</label>
-            <input type="text" id="subject" name="subject" data-testid="contact-subject" />
-          </div>
-          <div class="field">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="4" required data-testid="contact-message"></textarea>
-          </div>
-          <button type="submit" class="btn-submit" data-testid="contact-submit">
-            <span>Send message</span>
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 8h14M15 8l-5-5M15 8l-5 5" stroke="currentColor" stroke-width="1.2"/></svg>
-          </button>
-          <p class="form__status" id="formStatus" data-testid="form-status" role="status"></p>
-        </form>
-      </div>
-
-	  <footer class="footer">
-	    <div class="container footer__inner">
-	      <span>© <span id="year"></span> SARAH NAQVI</span>
-	      <div class="footer__social">
-	        <a href="https://github.com/sarnaqvi" target="_blank" rel="noopener noreferrer" data-testid="social-github">GitHub</a>
-	      </div>
-	      <a href="#home" class="footer__top" data-testid="back-to-top">Back to top ↑</a>
-	    </div>
-	  </footer>
-    </section>
-  </main>
-
-  <!-- Libraries -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script src="app.js"></script>
 </body>
 </html>
