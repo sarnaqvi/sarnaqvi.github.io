@@ -8,12 +8,17 @@
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const isTouch = window.matchMedia("(hover:none)").matches || window.innerWidth < 900;
 
-  document.getElementById("year").textContent = new Date().getFullYear();
+  const yearEl = document.getElementById("year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
 
   /* ---------- Curtain / page-load transition ---------- */
   function revealCurtain() {
     const curtain = document.getElementById("curtain");
-    if (reduce || !curtain) { if (curtain) curtain.style.display = "none"; heroReveal(); return; }
+    if (reduce || !curtain) { 
+      if (curtain) curtain.style.display = "none"; 
+      heroReveal(); 
+      return; 
+    }
     const word = curtain.querySelector(".curtain__word");
     const tl = gsap.timeline();
     tl.to(word, { opacity: 1, duration: .6, ease: "power2.out" })
@@ -29,7 +34,7 @@
       return;
     }
     const tl = gsap.timeline();
- 	tl.fromTo(".hero__media-frame", { clipPath: "inset(0 0 100% 0)" }, { clipPath: "inset(0 0 0% 0)", duration: 1.4, ease: "power4.out" })
+    tl.fromTo(".hero__media-frame", { clipPath: "inset(0 0 100% 0)" }, { clipPath: "inset(0 0 0% 0)", duration: 1.4, ease: "power4.out" })
       .fromTo(".hero__media img", { scale: 1.25 }, { scale: 1, duration: 1.8, ease: "power3.out" }, "<")
       .fromTo(".hero .overline", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: .8, ease: "power3.out" }, "-=1.1")
       .fromTo(".line__inner", { yPercent: 110 }, { yPercent: 0, duration: 1.4, ease: "power4.out", stagger: .12 }, "-=.5")
@@ -97,15 +102,20 @@
   /* ---------- Nav scroll state + smooth anchor ---------- */
   function initNav() {
     const nav = document.getElementById("nav");
-    const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 40);
-    window.addEventListener("scroll", onScroll); onScroll();
+    if (nav) {
+      const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 40);
+      window.addEventListener("scroll", onScroll); 
+      onScroll();
+    }
 
     // progress bar
     const bar = document.getElementById("progress");
-    window.addEventListener("scroll", () => {
-      const h = document.documentElement.scrollHeight - window.innerHeight;
-      bar.style.width = (window.scrollY / h) * 100 + "%";
-    });
+    if (bar) {
+      window.addEventListener("scroll", () => {
+        const h = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.width = (window.scrollY / h) * 100 + "%";
+      });
+    }
 
     document.querySelectorAll('a[href^="#"]').forEach((a) => {
       a.addEventListener("click", (e) => {
@@ -123,8 +133,12 @@
   /* ---------- Mobile menu ---------- */
   const burger = document.getElementById("burger");
   const menu = document.getElementById("mobileMenu");
-  function closeMenu() { burger.classList.remove("open"); menu.classList.remove("open"); }
+  function closeMenu() { 
+    if (burger) burger.classList.remove("open"); 
+    if (menu) menu.classList.remove("open"); 
+  }
   function initMenu() {
+    if (!burger || !menu) return;
     burger.addEventListener("click", () => {
       const open = burger.classList.toggle("open");
       menu.classList.toggle("open", open);
@@ -136,6 +150,8 @@
     if (isTouch) return;
     const ring = document.getElementById("cursor");
     const dot = document.getElementById("cursorDot");
+    if (!ring || !dot) return;
+
     let mx = 0, my = 0, rx = 0, ry = 0;
     window.addEventListener("mousemove", (e) => {
       mx = e.clientX; my = e.clientY;
@@ -185,6 +201,8 @@
     const npTime = document.getElementById("npTime");
     const seek = document.getElementById("seek");
     const seekFill = document.getElementById("seekFill");
+    if (!audio || !tracks.length) return;
+
     let current = -1;
 
     const fmt = (s) => {
@@ -193,21 +211,24 @@
       return m + ":" + (sec < 10 ? "0" : "") + sec;
     };
 
-    // preload durations
+    // preload durations safely
     tracks.forEach((t) => {
+      if (!t.dataset.src) return;
       const a = new Audio();
       a.preload = "metadata";
       a.src = t.dataset.src;
       a.addEventListener("loadedmetadata", () => {
-        t.querySelector(".track__dur").textContent = fmt(a.duration);
+        const durEl = t.querySelector(".track__dur");
+        if (durEl) durEl.textContent = fmt(a.duration);
       });
     });
 
     function load(i) {
       current = i;
       const t = tracks[i];
-      audio.src = t.dataset.src;
-      npTitle.textContent = t.dataset.title;
+      if (!t) return;
+      audio.src = t.dataset.src || "";
+      if (npTitle) npTitle.textContent = t.dataset.title || "Untitled";
       tracks.forEach((x) => x.classList.remove("playing"));
     }
 
@@ -218,40 +239,52 @@
     }
 
     function toggle(i) {
-      if (i === current && !audio.paused) { audio.pause(); tracks[i].classList.remove("playing"); }
+      if (i === current && !audio.paused) { 
+        audio.pause(); 
+        if (tracks[i]) tracks[i].classList.remove("playing"); 
+      }
       else play(i);
     }
 
     tracks.forEach((t, i) => {
-      t.querySelector(".track__play").addEventListener("click", (e) => { e.stopPropagation(); toggle(i); });
+      const playBtn = t.querySelector(".track__play");
+      if (playBtn) {
+        playBtn.addEventListener("click", (e) => { e.stopPropagation(); toggle(i); });
+      }
       t.addEventListener("click", () => toggle(i));
     });
 
     audio.addEventListener("timeupdate", () => {
       const pct = (audio.currentTime / audio.duration) * 100 || 0;
-      seekFill.style.width = pct + "%";
-      npTime.textContent = fmt(audio.currentTime) + " / " + fmt(audio.duration);
+      if (seekFill) seekFill.style.width = pct + "%";
+      if (npTime) npTime.textContent = fmt(audio.currentTime) + " / " + fmt(audio.duration);
     });
+
     audio.addEventListener("ended", () => {
       const next = (current + 1) % tracks.length;
       play(next);
     });
-    seek.addEventListener("click", (e) => {
-      const r = seek.getBoundingClientRect();
-      if (audio.duration) audio.currentTime = ((e.clientX - r.left) / r.width) * audio.duration;
-    });
+
+    if (seek) {
+      seek.addEventListener("click", (e) => {
+        const r = seek.getBoundingClientRect();
+        if (audio.duration) audio.currentTime = ((e.clientX - r.left) / r.width) * audio.duration;
+      });
+    }
   }
 
   /* ---------- Formspree AJAX submit ---------- */
   function initForm() {
     const form = document.getElementById("contactForm");
     const status = document.getElementById("formStatus");
+    if (!form || !status) return;
+
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       status.className = "form__status";
       const action = form.getAttribute("action");
-      if (action.includes("YOUR_ENDPOINT")) {
-        status.textContent = "⚙ Demo mode — add your Formspree endpoint in index.html to go live. (See README)";
+      if (!action || action.includes("YOUR_ENDPOINT")) {
+        status.textContent = "⚙ Demo mode — add your Formspree endpoint in index.html to go live.";
         status.classList.add("ok");
         form.reset();
         return;
