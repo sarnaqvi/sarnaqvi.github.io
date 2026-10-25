@@ -16,7 +16,7 @@
 
   <!-- page-load transition curtain -->
   <div class="curtain" id="curtain" aria-hidden="true">
-    <span class="curtain__word">Sarah Naqvi</span>
+    <span class="curtain__word">SARAH NAQVI</span>
   </div>
 
   <!-- custom cursor -->
@@ -29,7 +29,7 @@
   <!-- HEADER -->
   <header class="nav" id="nav">
     <a href="#home" class="nav__logo" data-testid="nav-logo">
-      <span>Sarah</span> <em>Naqvi</em>
+      <span>SARAH</span> <em>NAQVI</em>
     </a>
     <nav class="nav__links" aria-label="Primary">
       <a href="#bio" data-testid="nav-link-bio">Bio</a>
@@ -55,8 +55,8 @@
         <div class="hero__left">
           <p class="overline reveal-fade" data-testid="hero-overline">Portfolio</p>
           <h1 class="hero__title">
-            <span class="line"><span class="line__inner">Sarah</span></span>
-            <span class="line"><span class="line__inner"><em>Naqvi</em></span></span>
+            <span class="line"><span class="line__inner">SARAH</span></span>
+            <span class="line"><span class="line__inner"><em>NAQVI</em></span></span>
           </h1>
           <p class="hero__roles reveal-fade" data-testid="hero-roles">Musician &nbsp;·&nbsp; Producer/Composer &nbsp;·&nbsp; Research Assistant</p>
         
@@ -105,6 +105,7 @@
         <div class="marquee__item"><img src="assets/img/Testphoto3.jpg" alt="Stillness"></div>
         <div class="marquee__item"><img src="assets/img/Testphoto4.jpg" alt="Signal"></div>
         <div class="marquee__item"><img src="assets/img/Testphoto5.jpg" alt="Signal"></div>
+        <div class="marquee__item"><img src="assets/img/Testphoto6.jpg" alt="Signal"></div>
       </div>
     </div>
 
@@ -114,7 +115,7 @@
       <div class="container">
         <div class="music__head">
           <p class="overline reveal" data-testid="music-overline">02 — Music</p>
-          <h2 class="reveal">Selected <em>recordings</em></h2>
+          <h2 class="reveal">Selected <em>recordings & works</em></h2>
           <p class="body music__intro reveal">Press play</p>
         </div>
 
@@ -130,7 +131,7 @@
               <span class="track__meta">Stereo render of 8.1 multichannel composition</span>
               <span class="track__dur">—</span>
             </li>
-            <li class="track" data-src="assets/audio/Walid.wav" data-title="Walid" data-meta="Walid" data-testid="track-1">
+            <li class="track" data-src="assets/audio/PeonyPavilion.wav" data-title="Peony Pavilion: Dreaming" data-meta="Peony Pavilion" data-testid="track-1">
               <span class="track__index">02</span>
               <button class="track__play" aria-label="Play Peony Pavilion: Dreaming" data-testid="track-play-1">
                 <svg class="ic-play" width="14" height="14" viewBox="0 0 14 14"><path d="M2 1l11 6L2 13V1z" fill="currentColor"/></svg>
@@ -140,25 +141,23 @@
               <span class="track__meta">Stereo render of ambisonics composition</span>
               <span class="track__dur">—</span>
             </li>
-            <li class="track" data-src="assets/audio/PeonyPavilion.wav" data-title="PeonyPavilion" data-meta="PeonyPavilion" data-testid="track-2">
-              <span class="track__index">03</span>
-              <button class="track__play" aria-label="Flute Poses" data-testid="track-play-2">
-                <svg class="ic-play" width="14" height="14" viewBox="0 0 14 14"><path d="M2 1l11 6L2 13V1z" fill="currentColor"/></svg>
-                <svg class="ic-pause" width="14" height="14" viewBox="0 0 14 14"><rect x="2" y="1" width="3.5" height="12" fill="currentColor"/><rect x="8.5" y="1" width="3.5" height="12" fill="currentColor"/></svg>
-              </button>
-              <span class="track__title">Flute Poses</span>
-              <span class="track__meta">Demo video of Flute Poses: An interactive system that tracks flute performance postures using computer vision, maps gestural features through interactive machine learning (Wekinator), and controls real-time audio signal processing in Max/MSP.</span>
-              <span class="track__dur">—</span>
-            </li>
-            <li class="track" data-src="assets/audio/FlutePosesDemo.mp4" data-title="FlutePoses" data-meta="FlutePoses" data-testid="track-3">
-              <span class="track__index">04</span>
-              <button class="track__play" aria-label="Play Flute Poses Demo" data-testid="track-play-3">
-                <svg class="ic-play" width="14" height="14" viewBox="0 0 14 14"><path d="M2 1l11 6L2 13V1z" fill="currentColor"/></svg>
-                <svg class="ic-pause" width="14" height="14" viewBox="0 0 14 14"><rect x="2" y="1" width="3.5" height="12" fill="currentColor"/><rect x="8.5" y="1" width="3.5" height="12" fill="currentColor"/></svg>
-              </button>
-              <span class="track__title">Flute Poses Demo</span>
-              <span class="track__meta">Interactive system tracking flute postures</span>
-              <span class="track__dur">—</span>
+            <li class="track track--video" data-src="assets/audio/FlutePosesDemo.mp4" data-title="Flute Poses" data-meta="Flute Poses" data-testid="track-2">
+              <div class="track__header">
+                <span class="track__index">03</span>
+                <button class="track__play" aria-label="Play Flute Poses Video" data-testid="track-play-2">
+                  <svg class="ic-play" width="14" height="14" viewBox="0 0 14 14"><path d="M2 1l11 6L2 13V1z" fill="currentColor"/></svg>
+                  <svg class="ic-pause" width="14" height="14" viewBox="0 0 14 14"><rect x="2" y="1" width="3.5" height="12" fill="currentColor"/><rect x="8.5" y="1" width="3.5" height="12" fill="currentColor"/></svg>
+                </button>
+                <span class="track__title">Flute Poses</span>
+                <span class="track__meta">Demo video of Flute Poses: An interactive system that tracks flute performance postures using computer vision, maps gestural features through interactive machine learning (Wekinator), and controls real-time audio signal processing in Max/MSP.</span>
+                <span class="track__dur">—</span>
+              </div>
+              <div class="track__video-container" style="margin-top: 15px; display: none;">
+                <video id="fluteVideo" width="100%" controls style="border-radius: 8px; max-height: 480px; background: #000;">
+                  <source src="assets/audio/FlutePosesDemo.mp4" type="video/mp4">
+                  Your browser does not support video playback.
+                </video>
+              </div>
             </li>
           </ul>
 
@@ -180,9 +179,8 @@
     <!-- CONTACT -->
     <section class="contact" id="contact">
       <div class="container">
-        <p class="overline reveal" data-testid="contact-overline">04 — Contact</p>
+        <p class="overline reveal" data-testid="contact-overline">03 — Contact</p>
         <h2 class="contact__title reveal">Let's <em>talk</em>.</h2>
-        <p class="body contact__lede reveal">Commissions, collaborations, performances, or a question about the work — the box is open.</p>
 
         <form class="form reveal" action="https://formspree.io/f/xqervyge" method="POST" id="contactForm" data-testid="contact-form">
           <div class="form__row">
@@ -213,7 +211,7 @@
 
       <footer class="footer">
         <div class="container footer__inner">
-          <span>© <span id="year"></span> Sarah Naqvi</span>
+          <span>© <span id="year"></span> SARAH NAQVI</span>
           <div class="footer__social">
             <a href="#" data-testid="social-instagram">Instagram</a>
             <a href="#" data-testid="social-bandcamp">Bandcamp</a>

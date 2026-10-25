@@ -1,5 +1,5 @@
 /* ===================================================================
-   Elian Voss — Portfolio interactions
+   Sarah Naqvi — Portfolio interactions
    GSAP + ScrollTrigger + Lenis (all via CDN)
 =================================================================== */
 (function () {
@@ -95,7 +95,8 @@
   function initMarquee() {
     const track = document.getElementById("marquee");
     if (!track || reduce) return;
-    const width = track.scrollWidth / 3;
+    const items = track.querySelectorAll(".marquee__item");
+    const width = track.scrollWidth / 2;
     gsap.to(track, { x: -width, duration: 22, ease: "none", repeat: -1 });
   }
 
@@ -201,6 +202,8 @@
     const npTime = document.getElementById("npTime");
     const seek = document.getElementById("seek");
     const seekFill = document.getElementById("seekFill");
+    const fluteVideoContainer = document.querySelector(".track__video-container");
+    const fluteVideo = document.getElementById("fluteVideo");
     if (!audio || !tracks.length) return;
 
     let current = -1;
@@ -211,39 +214,71 @@
       return m + ":" + (sec < 10 ? "0" : "") + sec;
     };
 
-    // preload durations safely
     tracks.forEach((t) => {
       if (!t.dataset.src) return;
-      const a = new Audio();
-      a.preload = "metadata";
-      a.src = t.dataset.src;
-      a.addEventListener("loadedmetadata", () => {
-        const durEl = t.querySelector(".track__dur");
-        if (durEl) durEl.textContent = fmt(a.duration);
-      });
+      if (t.classList.contains("track--video")) {
+        if (fluteVideo) {
+          fluteVideo.addEventListener("loadedmetadata", () => {
+            const durEl = t.querySelector(".track__dur");
+            if (durEl) durEl.textContent = fmt(fluteVideo.duration);
+          });
+        }
+      } else {
+        const a = new Audio();
+        a.preload = "metadata";
+        a.src = t.dataset.src;
+        a.addEventListener("loadedmetadata", () => {
+          const durEl = t.querySelector(".track__dur");
+          if (durEl) durEl.textContent = fmt(a.duration);
+        });
+      }
     });
 
     function load(i) {
       current = i;
       const t = tracks[i];
       if (!t) return;
-      audio.src = t.dataset.src || "";
+
+      if (t.classList.contains("track--video")) {
+        audio.pause();
+        if (fluteVideoContainer) fluteVideoContainer.style.display = "block";
+        if (fluteVideo) fluteVideo.play();
+      } else {
+        if (fluteVideo) { fluteVideo.pause(); }
+        if (fluteVideoContainer) fluteVideoContainer.style.display = "none";
+        audio.src = t.dataset.src || "";
+      }
+
       if (npTitle) npTitle.textContent = t.dataset.title || "Untitled";
       tracks.forEach((x) => x.classList.remove("playing"));
     }
 
     function play(i) {
       if (i !== current) load(i);
-      audio.play();
+      const t = tracks[i];
+      if (!t.classList.contains("track--video")) {
+        audio.play();
+      }
       tracks.forEach((x, idx) => x.classList.toggle("playing", idx === i));
     }
 
     function toggle(i) {
-      if (i === current && !audio.paused) { 
-        audio.pause(); 
-        if (tracks[i]) tracks[i].classList.remove("playing"); 
+      const t = tracks[i];
+      if (t && t.classList.contains("track--video")) {
+        if (fluteVideo && !fluteVideo.paused) {
+          fluteVideo.pause();
+          t.classList.remove("playing");
+        } else {
+          play(i);
+        }
+      } else {
+        if (i === current && !audio.paused) { 
+          audio.pause(); 
+          if (tracks[i]) tracks[i].classList.remove("playing"); 
+        } else {
+          play(i);
+        }
       }
-      else play(i);
     }
 
     tracks.forEach((t, i) => {
@@ -260,6 +295,16 @@
       if (npTime) npTime.textContent = fmt(audio.currentTime) + " / " + fmt(audio.duration);
     });
 
+    if (fluteVideo) {
+      fluteVideo.addEventListener("timeupdate", () => {
+        if (current !== -1 && tracks[current].classList.contains("track--video")) {
+          const pct = (fluteVideo.currentTime / fluteVideo.duration) * 100 || 0;
+          if (seekFill) seekFill.style.width = pct + "%";
+          if (npTime) npTime.textContent = fmt(fluteVideo.currentTime) + " / " + fmt(fluteVideo.duration);
+        }
+      });
+    }
+
     audio.addEventListener("ended", () => {
       const next = (current + 1) % tracks.length;
       play(next);
@@ -268,7 +313,11 @@
     if (seek) {
       seek.addEventListener("click", (e) => {
         const r = seek.getBoundingClientRect();
-        if (audio.duration) audio.currentTime = ((e.clientX - r.left) / r.width) * audio.duration;
+        if (current !== -1 && tracks[current].classList.contains("track--video")) {
+          if (fluteVideo && fluteVideo.duration) fluteVideo.currentTime = ((e.clientX - r.left) / r.width) * fluteVideo.duration;
+        } else if (audio.duration) {
+          audio.currentTime = ((e.clientX - r.left) / r.width) * audio.duration;
+        }
       });
     }
   }
